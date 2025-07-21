@@ -1,0 +1,40 @@
+# Source files
+src/
+tsconfig.json
+tsup.config.ts
+
+# Development files
+.git/
+.gitignore
+node_modules/
+.env
+.env.local
+
+# Documentation files that shouldn't be in the npm package
+docs/
+examples/
+
+# Build artifacts
+*.log
+*.tgz
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Test files
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+coverage/
+.jest/
+
+# Config files
+.eslintrc*
+.prettierrc*
+.editorconfig

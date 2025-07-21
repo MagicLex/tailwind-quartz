@@ -18,7 +18,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const [isVisible, setIsVisible] = React.useState(false);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
   const triggerRef = React.useRef<HTMLElement>(null);
-  const timeoutRef = React.useRef<NodeJS.Timeout>();
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
 
   React.useEffect(() => {
     return () => {

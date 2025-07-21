@@ -1,4 +1,4 @@
-const { colors, typography, spacing, shadows, zIndices, borderRadius, transitions } = require('@logicalclocks/design-tokens');
+const { colors, typography, spacing, shadows, zIndices, borderRadius, transitions } = require('./src/tokens');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

@@ -33,6 +33,27 @@ const colorConfig = {
   ...flattenColors(colors),
   transparent: 'transparent',
   current: 'currentColor',
+  // Add semantic color mappings to match component usage
+  primary: {
+    DEFAULT: colors.primary,
+    light: colors.primaryShade1,
+    lighter: colors.primaryShade2,
+  },
+  gray: {
+    DEFAULT: colors.gray,
+    light: colors.grayShade1,
+    lighter: colors.grayShade2,
+    lightest: colors.grayShade3,
+  },
+  // Add semantic label color mappings
+  label: {
+    red: colors.labels.red,
+    orange: colors.labels.orange,
+    purple: colors.labels.purple,
+    yellow: colors.labels.yellow,
+    green: colors.labels.green,
+    blue: colors.labels.blue,
+  },
 };
 
 // Create font family config
@@ -106,6 +127,9 @@ export const quartzPreset: Partial<Config> = {
         return acc;
       }, {}),
       transitionProperty: transitionConfig,
+      borderColor: {
+        DEFAULT: colors.grayShade2, // Default border color in Quartz is light gray
+      },
       keyframes: {
         'fade-in': {
           '0%': { opacity: '0' },

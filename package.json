@@ -1,6 +1,6 @@
 {
   "name": "tailwind-quartz",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Modern Tailwind-based component library with Quartz design system",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

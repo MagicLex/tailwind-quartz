@@ -18,8 +18,8 @@ export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectE
 }
 
 const variantStyles = {
-  primary: 'bg-gray-lightest border-transparent',
-  white: 'bg-white border-gray-lighter',
+  primary: 'bg-white border-gray-lighter',
+  white: 'bg-gray-lightest border-gray-lighter',
 };
 
 const intentStyles = {

@@ -68,7 +68,7 @@ export const Modal: React.FC<ModalProps> = ({
                 onClick={onClose}
                 className="ml-auto p-1 text-gray hover:text-black transition-colors"
               >
-                <Icon name="close" size="md" />
+                <Icon name="XMarkIcon" size="md" />
               </button>
             )}
           </div>

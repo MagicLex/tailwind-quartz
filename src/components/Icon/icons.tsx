@@ -130,3 +130,5 @@ export const icons: Record<IconName, (className?: string) => React.ReactElement>
     </svg>
   ),
 };
+
+export const iconNames = Object.keys(icons) as IconName[];

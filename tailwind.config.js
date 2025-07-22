@@ -9,8 +9,9 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: colors.primary,
+          dark: '#1A8D6B', // Darker shade for hover
           light: colors.primaryShade1,
-          lighter: colors.primaryShade2,
+          lightest: colors.primaryShade2,
         },
         gray: {
           DEFAULT: colors.gray,
@@ -18,6 +19,12 @@ module.exports = {
           lighter: colors.grayShade2,
           lightest: colors.grayShade3,
         },
+        error: {
+          DEFAULT: colors.labels.red,
+          lightest: colors.labels.redShade2,
+        },
+        success: colors.labels.green,
+        warning: colors.labels.orange,
         black: colors.black,
         white: colors.white,
         label: colors.labels,

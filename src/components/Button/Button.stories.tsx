@@ -2,25 +2,21 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Forms/Button',
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
   argTypes: {
-    variant: {
+    intent: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'danger'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-    disabled: {
-      control: 'boolean',
+      options: ['primary', 'secondary', 'ghost', 'inline', 'alert'],
     },
     isLoading: {
+      control: 'boolean',
+    },
+    disabled: {
       control: 'boolean',
     },
   },
@@ -29,58 +25,107 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    variant: 'primary',
-    children: 'Primary Button',
+    children: 'Button',
   },
 };
 
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Secondary Button',
-  },
+export const Intents: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div className="flex gap-4 items-center">
+        <Button intent="primary">Primary</Button>
+        <span className="text-sm text-gray-500">Filled button for primary actions</span>
+      </div>
+      <div className="flex gap-4 items-center">
+        <Button intent="secondary">Secondary</Button>
+        <span className="text-sm text-gray-500">Outlined button for secondary actions</span>
+      </div>
+      <div className="flex gap-4 items-center">
+        <Button intent="ghost">Ghost</Button>
+        <span className="text-sm text-gray-500">Minimal button with no border</span>
+      </div>
+      <div className="flex gap-4 items-center">
+        <Button intent="inline">Inline</Button>
+        <span className="text-sm text-gray-500">Text-only button with underline</span>
+      </div>
+      <div className="flex gap-4 items-center">
+        <Button intent="alert">Alert</Button>
+        <span className="text-sm text-gray-500">Destructive action button</span>
+      </div>
+    </div>
+  ),
 };
 
-export const Tertiary: Story = {
-  args: {
-    variant: 'tertiary',
-    children: 'Tertiary Button',
-  },
+export const States: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div>
+        <p className="text-sm font-bold mb-2">Normal</p>
+        <div className="flex gap-2">
+          <Button intent="primary">Primary</Button>
+          <Button intent="secondary">Secondary</Button>
+          <Button intent="ghost">Ghost</Button>
+          <Button intent="inline">Inline</Button>
+          <Button intent="alert">Alert</Button>
+        </div>
+      </div>
+      <div>
+        <p className="text-sm font-bold mb-2">Disabled</p>
+        <div className="flex gap-2">
+          <Button intent="primary" disabled>Primary</Button>
+          <Button intent="secondary" disabled>Secondary</Button>
+          <Button intent="ghost" disabled>Ghost</Button>
+          <Button intent="inline" disabled>Inline</Button>
+          <Button intent="alert" disabled>Alert</Button>
+        </div>
+      </div>
+      <div>
+        <p className="text-sm font-bold mb-2">Loading</p>
+        <div className="flex gap-2">
+          <Button intent="primary" isLoading>Primary</Button>
+          <Button intent="secondary" isLoading>Secondary</Button>
+          <Button intent="ghost" isLoading>Ghost</Button>
+          <Button intent="alert" isLoading>Alert</Button>
+        </div>
+      </div>
+    </div>
+  ),
 };
 
-export const Danger: Story = {
-  args: {
-    variant: 'danger',
-    children: 'Danger Button',
-  },
+export const WithIcons: Story = {
+  render: () => (
+    <div className="flex gap-2">
+      <Button intent="primary" icon="plus">Add Item</Button>
+      <Button intent="secondary" icon="edit">Edit</Button>
+      <Button intent="ghost" icon="trash">Delete</Button>
+      <Button intent="alert" icon="alert-triangle">Warning</Button>
+    </div>
+  ),
 };
 
-export const Small: Story = {
-  args: {
-    size: 'small',
-    children: 'Small Button',
-  },
+export const AsLink: Story = {
+  render: () => (
+    <div className="flex gap-2">
+      <Button href="https://example.com" external>
+        External Link
+      </Button>
+      <Button href="/internal" intent="secondary">
+        Internal Link
+      </Button>
+    </div>
+  ),
 };
 
-export const Large: Story = {
-  args: {
-    size: 'large',
-    children: 'Large Button',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-    children: 'Disabled Button',
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    isLoading: true,
-    children: 'Loading...',
-  },
+export const LoadingStates: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <Button isLoading>Loading with Text</Button>
+        <Button isLoading loadingOnly>Loading Only</Button>
+        <Button icon="plus" isLoading>With Icon</Button>
+      </div>
+    </div>
+  ),
 };

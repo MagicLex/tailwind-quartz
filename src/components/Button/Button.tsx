@@ -19,14 +19,14 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const intentStyles: Record<Intent, string> = {
-  primary: 'bg-primary text-white border border-primary hover:bg-primary-light hover:border-primary-light focus:outline-none focus:ring-2 focus:ring-primary/60',
-  secondary: 'bg-white text-primary border border-gray-lighter hover:bg-gray-lightest hover:border-gray-light focus:outline-none focus:ring-2 focus:ring-primary/60',
-  ghost: 'bg-transparent text-primary border border-transparent hover:bg-gray-lightest focus:outline-none focus:ring-2 focus:ring-primary/60',
-  inline: 'bg-transparent text-primary border-none p-0 hover:underline focus:outline-none',
-  alert: 'bg-label-red text-white border border-label-red hover:bg-label-red/80 hover:border-label-red/80 focus:outline-none focus:ring-2 focus:ring-label-red/60',
+  primary: 'bg-primary text-white border border-primary hover:bg-primary-dark hover:border-primary-dark disabled:bg-gray-light disabled:border-gray-light disabled:text-white focus:outline-none focus:ring-2 focus:ring-primary/60',
+  secondary: 'bg-white text-primary border border-gray-light hover:bg-primary-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-primary/60',
+  ghost: 'bg-transparent text-primary border border-transparent hover:bg-primary-lightest active:border-primary disabled:bg-transparent disabled:text-gray disabled:border-transparent focus:outline-none focus:ring-2 focus:ring-primary/60',
+  inline: 'bg-transparent text-primary border-none underline p-0 hover:no-underline disabled:text-gray disabled:no-underline focus:outline-none',
+  alert: 'bg-white text-error border border-gray-light hover:bg-error-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-error/60',
 };
 
-const baseStyles = 'inline-flex items-center justify-center px-4 py-2 rounded-sm font-bold text-sm transition-button cursor-pointer disabled:cursor-default disabled:opacity-50';
+const baseStyles = 'inline-flex items-center justify-center px-4 py-2 rounded-sm font-bold text-sm transition-all duration-200 cursor-pointer disabled:cursor-default';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -55,7 +55,7 @@ export const Button: React.FC<ButtonProps> = ({
           name={icon} 
           size="md" 
           className="mr-2"
-          color={intent === 'primary' || intent === 'alert' ? 'white' : undefined}
+          color={intent === 'primary' ? 'white' : undefined}
         />
       )}
       {(!loadingOnly || !isLoading) && children}
@@ -63,7 +63,7 @@ export const Button: React.FC<ButtonProps> = ({
         <Spinner 
           size={16} 
           className={loadingOnly ? '' : 'ml-2'}
-          color={intent === 'primary' || intent === 'alert' ? 'white' : 'currentColor'}
+          color={intent === 'primary' ? 'white' : 'currentColor'}
         />
       )}
     </button>

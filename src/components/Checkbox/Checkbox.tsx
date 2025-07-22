@@ -2,12 +2,12 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  label?: React.ReactNode;
+  children?: React.ReactNode;
   error?: boolean;
 }
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, error, className, ...props }, ref) => {
+  ({ children, error, className, ...props }, ref) => {
     return (
       <label className="inline-flex items-center cursor-pointer">
         <input
@@ -21,8 +21,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           )}
           {...props}
         />
-        {label && (
-          <span className="ml-2 text-sm font-normal text-black">{label}</span>
+        {children && (
+          <span className="ml-2 text-sm font-normal text-black">{children}</span>
         )}
       </label>
     );

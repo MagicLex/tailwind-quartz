@@ -1,0 +1,211 @@
+import { Meta } from '@storybook/blocks';
+
+export const colors = {
+  primary: '#21B182',
+  primaryShade1: '#65D3AF',
+  primaryShade2: '#E6F2EE',
+  gray: '#a0a0a0',
+  grayShade1: '#CBCBCB',
+  grayShade2: '#E2E2E2',
+  grayShade3: '#F5F5F5',
+  black: '#272727',
+  white: '#FFFFFF',
+  labels: {
+    red: '#EB5757',
+    orange: '#f2994a',
+    purple: '#9B51E0',
+    yellow: '#FFE600',
+    green: '#21B182',
+    blue: '#186781',
+  },
+};
+
+export const typography = {
+  fonts: {
+    title: 'Inter',
+    subtitle: 'Inter',
+    text: 'Inter',
+    label: 'Inter',
+    value: 'IBM Plex Mono',
+  },
+  fontSizes: {
+    title: '24px',
+    subtitle: '18px',
+    text: '12px',
+    label: '12px',
+    value: '12px',
+  },
+  fontWeights: {
+    title: 700,
+    subtitle: 700,
+    text: 500,
+    label: 700,
+    value: 700,
+  },
+};
+
+export const spacing = {
+  0: '0px',
+  1: '4px',
+  2: '8px',
+  3: '12px',
+  4: '15px',
+  5: '16px',
+  6: '20px',
+  7: '24px',
+};
+
+export const shadows = {
+  primary: '0px 5px 15px rgba(33, 177, 130, 0.2)',
+  secondary: '0px 5px 15px rgba(144, 144, 144, 0.2)',
+  alert: '0px 5px 15px rgba(235, 87, 87, 0.25)',
+  card: 'inset 0px -20px 30px -25px rgba(0, 0, 0, 0.15)',
+  focused: '0 0 0 2px rgba(33, 177, 130, 0.6)',
+};
+
+<Meta title="Introduction" />
+
+# Tailwind Quartz Design System
+
+Modern Tailwind-based component library with the Quartz design system.
+
+## Color Palette
+
+### Primary Colors
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+  <div>
+    <div style={{ backgroundColor: colors.primary, height: '100px', borderRadius: '4px' }}></div>
+    <p><strong>Primary</strong><br />{colors.primary}</p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.primaryShade1, height: '100px', borderRadius: '4px' }}></div>
+    <p><strong>Primary Shade 1</strong><br />{colors.primaryShade1}</p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.primaryShade2, height: '100px', borderRadius: '4px' }}></div>
+    <p><strong>Primary Shade 2</strong><br />{colors.primaryShade2}</p>
+  </div>
+</div>
+
+### Grayscale
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+  <div>
+    <div style={{ backgroundColor: colors.black, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Black</strong><br />{colors.black}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.gray, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Gray</strong><br />{colors.gray}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.grayShade1, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Gray 1</strong><br />{colors.grayShade1}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.grayShade2, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Gray 2</strong><br />{colors.grayShade2}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.grayShade3, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Gray 3</strong><br />{colors.grayShade3}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.white, height: '60px', borderRadius: '4px', border: '1px solid #e5e5e5' }}></div>
+    <p><small><strong>White</strong><br />{colors.white}</small></p>
+  </div>
+</div>
+
+### Semantic Colors
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+  <div>
+    <div style={{ backgroundColor: colors.labels.red, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Red</strong><br />{colors.labels.red}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.labels.orange, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Orange</strong><br />{colors.labels.orange}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.labels.yellow, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Yellow</strong><br />{colors.labels.yellow}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.labels.green, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Green</strong><br />{colors.labels.green}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.labels.blue, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Blue</strong><br />{colors.labels.blue}</small></p>
+  </div>
+  <div>
+    <div style={{ backgroundColor: colors.labels.purple, height: '60px', borderRadius: '4px' }}></div>
+    <p><small><strong>Purple</strong><br />{colors.labels.purple}</small></p>
+  </div>
+</div>
+
+## Typography
+
+<table style={{ width: '100%', marginBottom: '2rem' }}>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Font</th>
+      <th>Size</th>
+      <th>Weight</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td>{typography.fonts.title}</td>
+      <td>{typography.fontSizes.title}</td>
+      <td>{typography.fontWeights.title}</td>
+      <td><span style={{ fontSize: typography.fontSizes.title, fontWeight: typography.fontWeights.title }}>Page Title</span></td>
+    </tr>
+    <tr>
+      <td>Subtitle</td>
+      <td>{typography.fonts.subtitle}</td>
+      <td>{typography.fontSizes.subtitle}</td>
+      <td>{typography.fontWeights.subtitle}</td>
+      <td><span style={{ fontSize: typography.fontSizes.subtitle, fontWeight: typography.fontWeights.subtitle }}>Section Subtitle</span></td>
+    </tr>
+    <tr>
+      <td>Text</td>
+      <td>{typography.fonts.text}</td>
+      <td>{typography.fontSizes.text}</td>
+      <td>{typography.fontWeights.text}</td>
+      <td><span style={{ fontSize: typography.fontSizes.text, fontWeight: typography.fontWeights.text }}>Body text content</span></td>
+    </tr>
+    <tr>
+      <td>Label</td>
+      <td>{typography.fonts.label}</td>
+      <td>{typography.fontSizes.label}</td>
+      <td>{typography.fontWeights.label}</td>
+      <td><span style={{ fontSize: typography.fontSizes.label, fontWeight: typography.fontWeights.label }}>Form Label</span></td>
+    </tr>
+    <tr>
+      <td>Value</td>
+      <td>{typography.fonts.value}</td>
+      <td>{typography.fontSizes.value}</td>
+      <td>{typography.fontWeights.value}</td>
+      <td><span style={{ fontFamily: 'IBM Plex Mono', fontSize: typography.fontSizes.value, fontWeight: typography.fontWeights.value }}>CODE_VALUE</span></td>
+    </tr>
+  </tbody>
+</table>
+
+## Spacing System
+
+Our spacing system is based on a 4px unit:
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: '0.5rem', marginBottom: '2rem' }}>
+  {Object.entries(spacing).slice(0, 8).map(([key, value]) => (
+    <div key={key} style={{ textAlign: 'center' }}>
+      <div style={{ backgroundColor: colors.primary, height: value, marginBottom: '0.5rem' }}></div>
+      <small><strong>{key}</strong><br />{value}</small>
+    </div>
+  ))}
+</div>

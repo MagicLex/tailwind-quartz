@@ -24,6 +24,9 @@ export type { LabelingProps } from './components/Labeling';
 export { Microlabeling } from './components/Microlabeling';
 export type { MicrolabelingProps } from './components/Microlabeling';
 
+// Typography namespace component
+export { Typography } from './components/Typography';
+
 // Interactive components
 export { Button } from './components/Button';
 export type { ButtonProps } from './components/Button';
@@ -39,7 +42,7 @@ export { Input } from './components/Input';
 export type { InputProps } from './components/Input';
 
 export { Select } from './components/Select';
-export type { SelectProps, SelectOption } from './components/Select';
+export type { SelectProps } from './components/Select';
 
 export { Checkbox } from './components/Checkbox';
 export type { CheckboxProps } from './components/Checkbox';

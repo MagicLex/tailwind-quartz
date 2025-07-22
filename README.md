@@ -14,6 +14,17 @@ yarn add tailwind-quartz
 
 ## Quick Start
 
+### Preview Components
+
+To see all components in action with interactive documentation:
+
+```bash
+npm install
+npm run storybook
+```
+
+This will open Storybook at `http://localhost:6006` with all components, their variants, and interactive controls.
+
 ### 1. Import Components
 
 ```tsx

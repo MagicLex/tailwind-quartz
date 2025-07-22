@@ -17,17 +17,17 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             {...props}
           />
           <div className={cn(
-            'w-11 h-6 bg-gray-lighter rounded-sm',
-            'peer-checked:bg-primary',
+            'w-11 h-6 bg-gray-lighter rounded-sm border border-gray-light',
+            'peer-checked:bg-primary peer-checked:border-primary',
             'peer-disabled:opacity-50 peer-disabled:cursor-not-allowed',
-            'transition-colors duration-200',
+            'transition-all duration-200',
             className
           )} />
           <div className={cn(
-            'absolute top-[1px] left-[1px] bg-white w-[22px] h-[22px] rounded-sm',
-            'peer-checked:translate-x-[22px]',
-            'transition-transform duration-200',
-            'border border-gray-light'
+            'absolute top-[2px] left-[2px] bg-white w-5 h-5 rounded-sm',
+            'peer-checked:left-auto peer-checked:right-[2px]',
+            'transition-all duration-200',
+            'shadow-sm'
           )} />
         </div>
         {label && (

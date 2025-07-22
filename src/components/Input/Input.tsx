@@ -101,7 +101,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               onMouseUp={() => setShowPassword(false)}
               onMouseLeave={() => setShowPassword(false)}
             >
-              <Icon name={showPassword ? 'eye' : 'eyeOff'} size="md" />
+              <Icon name={showPassword ? 'EyeIcon' : 'EyeSlashIcon'} size="md" />
             </button>
           )}
           

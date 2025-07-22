@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { cn } from '../../utils/cn';
-import { icons, IconName } from './icons';
+import * as OutlineIcons from '@heroicons/react/24/outline';
+import * as SolidIcons from '@heroicons/react/24/solid';
 
 export type IconSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type IconVariant = 'outline' | 'solid';
 
 const sizeClasses: Record<IconSize, string> = {
   xxs: 'w-2 h-2',   // 8px
@@ -13,34 +15,40 @@ const sizeClasses: Record<IconSize, string> = {
   xl: 'w-9 h-9',    // 36px
 };
 
-export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
+// Create icon maps
+const outlineIconMap = OutlineIcons as Record<string, React.ComponentType<any>>;
+const solidIconMap = SolidIcons as Record<string, React.ComponentType<any>>;
+
+// Get all available icon names (from outline icons as reference)
+export type IconName = keyof typeof OutlineIcons;
+
+export interface IconProps extends React.HTMLAttributes<SVGElement> {
   name: IconName;
   size?: IconSize;
-  color?: string;
+  variant?: IconVariant;
 }
 
 export const Icon: React.FC<IconProps> = ({ 
   name, 
-  size = 'lg', 
-  color,
+  size = 'lg',
+  variant = 'outline',
   className,
   ...props 
 }) => {
-  const IconComponent = icons[name];
+  const iconMap = variant === 'solid' ? solidIconMap : outlineIconMap;
+  const IconComponent = iconMap[name];
   
   if (!IconComponent) {
-    console.warn(`Icon "${name}" not found`);
+    console.warn(`Icon "${name}" not found in @heroicons/react`);
     return null;
   }
 
   return (
-    <span 
-      className={cn('inline-flex items-center justify-center', className)}
-      style={{ color }}
+    <IconComponent
+      className={cn(sizeClasses[size], className)}
+      aria-hidden="true"
       {...props}
-    >
-      {IconComponent(sizeClasses[size])}
-    </span>
+    />
   );
 };
 

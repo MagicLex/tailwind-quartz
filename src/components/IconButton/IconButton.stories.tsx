@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { IconButton } from './IconButton';
-import { Icon } from '../Icon';
 
 const meta = {
   title: 'Interactive/IconButton',
@@ -16,48 +15,64 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    icon: <Icon name="x" />,
+    icon: 'XMarkIcon',
     'aria-label': 'Close',
   },
 };
 
 export const Sizes: Story = {
-  render: () => (
+  args: {
+    icon: 'XMarkIcon',
+    'aria-label': 'Close',
+  },
+  render: (args) => (
     <div className="flex items-center gap-4">
-      <IconButton icon={<Icon name="x" />} size="small" aria-label="Small close" />
-      <IconButton icon={<Icon name="x" />} size="medium" aria-label="Medium close" />
-      <IconButton icon={<Icon name="x" />} size="large" aria-label="Large close" />
+      <IconButton {...args} size="sm" aria-label="Small close" />
+      <IconButton {...args} size="md" aria-label="Medium close" />
+      <IconButton {...args} size="lg" aria-label="Large close" />
     </div>
   ),
 };
 
 export const Variants: Story = {
-  render: () => (
+  args: {
+    'aria-label': 'Action',
+  },
+  render: (args) => (
     <div className="flex items-center gap-4">
-      <IconButton icon={<Icon name="plus" />} variant="primary" aria-label="Add" />
-      <IconButton icon={<Icon name="edit" />} variant="secondary" aria-label="Edit" />
-      <IconButton icon={<Icon name="trash" />} variant="danger" aria-label="Delete" />
-      <IconButton icon={<Icon name="settings" />} variant="ghost" aria-label="Settings" />
+      <IconButton {...args} icon="PlusIcon" intent="primary" aria-label="Add" />
+      <IconButton {...args} icon="PencilIcon" intent="secondary" aria-label="Edit" />
+      <IconButton {...args} icon="TrashIcon" intent="alert" aria-label="Delete" />
+      <IconButton {...args} icon="Cog6ToothIcon" intent="ghost" aria-label="Settings" />
     </div>
   ),
 };
 
 export const States: Story = {
-  render: () => (
+  args: {
+    icon: 'CheckIcon',
+    'aria-label': 'Check',
+  },
+  render: (args) => (
     <div className="flex items-center gap-4">
-      <IconButton icon={<Icon name="check" />} aria-label="Normal" />
-      <IconButton icon={<Icon name="check" />} disabled aria-label="Disabled" />
-      <IconButton icon={<Icon name="check" />} className="opacity-50" aria-label="Loading" />
+      <IconButton {...args} aria-label="Normal" />
+      <IconButton {...args} disabled aria-label="Disabled" />
+      <IconButton {...args} className="opacity-50" aria-label="Loading" />
     </div>
   ),
 };
 
 export const InContext: Story = {
-  render: () => (
+  args: {
+    icon: 'XMarkIcon',
+    intent: 'ghost',
+    'aria-label': 'Close modal',
+  },
+  render: (args) => (
     <div className="p-4 bg-white border border-gray-light rounded-sm">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold">Modal Title</h3>
-        <IconButton icon={<Icon name="x" />} variant="ghost" aria-label="Close modal" />
+        <IconButton {...args} />
       </div>
       <p className="mt-2 text-gray-500">Modal content goes here...</p>
     </div>

@@ -97,10 +97,10 @@ export const States: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div className="flex gap-2">
-      <Button intent="primary" icon="plus">Add Item</Button>
-      <Button intent="secondary" icon="edit">Edit</Button>
-      <Button intent="ghost" icon="trash">Delete</Button>
-      <Button intent="alert" icon="alert-triangle">Warning</Button>
+      <Button intent="primary" icon="PlusIcon">Add Item</Button>
+      <Button intent="secondary" icon="PencilIcon">Edit</Button>
+      <Button intent="ghost" icon="TrashIcon">Delete</Button>
+      <Button intent="alert" icon="ExclamationTriangleIcon">Warning</Button>
     </div>
   ),
 };
@@ -124,7 +124,7 @@ export const LoadingStates: Story = {
       <div className="flex gap-2">
         <Button isLoading>Loading with Text</Button>
         <Button isLoading loadingOnly>Loading Only</Button>
-        <Button icon="plus" isLoading>With Icon</Button>
+        <Button icon="PlusIcon" isLoading>With Icon</Button>
       </div>
     </div>
   ),

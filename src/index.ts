@@ -91,6 +91,9 @@ export type { IconButtonProps } from './components/IconButton';
 export { Dropdown, DropdownItem, DropdownDivider } from './components/Dropdown';
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown';
 
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs';
+export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps } from './components/Tabs';
+
 // Utilities
 export { cn } from './utils/cn';
 

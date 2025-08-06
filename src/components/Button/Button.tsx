@@ -5,10 +5,12 @@ import { Spinner } from '../Spinner';
 import type { IconName } from '../Icon';
 
 type Intent = 'primary' | 'secondary' | 'ghost' | 'inline' | 'alert';
+type Size = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   intent?: Intent;
+  size?: Size;
   icon?: IconName;
   iconPosition?: 'left' | 'right';
   href?: string;
@@ -27,11 +29,30 @@ const intentStyles: Record<Intent, string> = {
   alert: 'bg-white text-error border border-gray-light hover:bg-error-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-error/60',
 };
 
-const baseStyles = 'inline-flex items-center px-4 py-2 rounded-sm font-bold text-sm transition-all duration-200 cursor-pointer disabled:cursor-default';
+const sizeStyles: Record<Size, string> = {
+  sm: 'px-3 py-1.5 text-xs',
+  md: 'px-4 py-2 text-sm',
+  lg: 'px-6 py-3 text-base',
+};
+
+const iconSizes: Record<Size, 'sm' | 'md' | 'lg'> = {
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+};
+
+const spinnerSizes: Record<Size, number> = {
+  sm: 12,
+  md: 16,
+  lg: 20,
+};
+
+const baseStyles = 'inline-flex items-center rounded-sm font-bold transition-all duration-200 cursor-pointer disabled:cursor-default';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   intent = 'primary',
+  size = 'md',
   icon,
   iconPosition = 'left',
   href,
@@ -48,7 +69,7 @@ export const Button: React.FC<ButtonProps> = ({
   const iconElement = icon && (!loadingOnly || !isLoading) && (
     <Icon 
       name={icon} 
-      size="md" 
+      size={iconSizes[size]} 
       className="flex-shrink-0"
       color={intent === 'primary' ? 'white' : undefined}
     />
@@ -58,7 +79,13 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       disabled={disabled || isLoading}
-      className={cn(baseStyles, !icon ? 'justify-center' : '', intentStyles[intent], className)}
+      className={cn(
+        baseStyles, 
+        sizeStyles[size], 
+        !icon ? 'justify-center' : '', 
+        intent !== 'inline' ? intentStyles[intent] : intentStyles.inline,
+        className
+      )}
       {...props}
     >
       {iconPosition === 'left' && iconElement}
@@ -68,7 +95,7 @@ export const Button: React.FC<ButtonProps> = ({
       {iconPosition === 'right' && iconElement}
       {isLoading && (
         <Spinner 
-          size={16} 
+          size={spinnerSizes[size]} 
           className={`flex-shrink-0 ${!loadingOnly ? 'ml-2' : ''}`}
           color={intent === 'primary' ? 'white' : 'currentColor'}
         />

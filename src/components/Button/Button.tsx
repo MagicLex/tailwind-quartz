@@ -47,7 +47,7 @@ const spinnerSizes: Record<Size, number> = {
   lg: 20,
 };
 
-const baseStyles = 'inline-flex items-center rounded-sm font-bold transition-all duration-200 cursor-pointer disabled:cursor-default';
+const baseStyles = 'relative inline-flex items-center rounded-sm font-bold transition-all duration-200 cursor-pointer disabled:cursor-default';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -66,11 +66,20 @@ export const Button: React.FC<ButtonProps> = ({
   as: Component,
   ...props
 }) => {
+  const paddingWithIcon = {
+    sm: iconPosition === 'left' ? 'pl-8' : 'pr-8',
+    md: iconPosition === 'left' ? 'pl-10' : 'pr-10',
+    lg: iconPosition === 'left' ? 'pl-12' : 'pr-12',
+  };
+
   const iconElement = icon && (!loadingOnly || !isLoading) && (
     <Icon 
       name={icon} 
       size={iconSizes[size]} 
-      className="flex-shrink-0"
+      className={cn(
+        "absolute top-1/2 -translate-y-1/2",
+        iconPosition === 'left' ? 'left-3' : 'right-3'
+      )}
       color={intent === 'primary' ? 'white' : 'currentColor'}
     />
   );
@@ -81,22 +90,23 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || isLoading}
       className={cn(
         baseStyles, 
-        sizeStyles[size], 
-        !icon ? 'justify-center' : '', 
+        sizeStyles[size],
+        icon ? paddingWithIcon[size] : '',
+        'justify-center',
         intent !== 'inline' ? intentStyles[intent] : intentStyles.inline,
         className
       )}
       {...props}
     >
-      {iconPosition === 'left' && iconElement}
-      {iconPosition === 'left' && icon && <span className="w-2" />}
+      {iconElement}
       {(!loadingOnly || !isLoading) && children}
-      {iconPosition === 'right' && icon && <span className="w-2" />}
-      {iconPosition === 'right' && iconElement}
       {isLoading && (
         <Spinner 
           size={spinnerSizes[size]} 
-          className={`flex-shrink-0 ${!loadingOnly ? 'ml-2' : ''}`}
+          className={cn(
+            loadingOnly ? 'relative' : 'ml-2',
+            !loadingOnly && 'relative'
+          )}
           color={intent === 'primary' ? 'white' : 'currentColor'}
         />
       )}

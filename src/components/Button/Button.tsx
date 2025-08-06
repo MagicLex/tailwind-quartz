@@ -11,6 +11,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode;
   intent?: Intent;
   size?: Size;
+  neutral?: boolean;
   icon?: IconName;
   iconPosition?: 'left' | 'right';
   href?: string;
@@ -26,6 +27,14 @@ const intentStyles: Record<Intent, string> = {
   secondary: 'bg-white text-primary border border-primary hover:bg-primary-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-primary/60',
   ghost: 'bg-transparent text-primary border border-transparent hover:bg-primary-lightest active:border-primary disabled:bg-transparent disabled:text-gray disabled:border-transparent focus:outline-none focus:ring-2 focus:ring-primary/60',
   inline: 'bg-transparent text-primary border-none underline p-0 hover:no-underline disabled:text-gray disabled:no-underline focus:outline-none',
+  alert: 'bg-white text-error border border-error hover:bg-error-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-error/60',
+};
+
+const neutralStyles: Record<Intent, string> = {
+  primary: 'bg-black text-white border border-black hover:bg-gray-dark hover:border-gray-dark disabled:bg-gray-light disabled:border-gray-light disabled:text-white focus:outline-none focus:ring-2 focus:ring-gray/60',
+  secondary: 'bg-white text-black border border-black hover:bg-gray-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-gray/60',
+  ghost: 'bg-transparent text-black border border-transparent hover:bg-gray-lightest active:border-black disabled:bg-transparent disabled:text-gray disabled:border-transparent focus:outline-none focus:ring-2 focus:ring-gray/60',
+  inline: 'bg-transparent text-black border-none underline p-0 hover:no-underline disabled:text-gray disabled:no-underline focus:outline-none',
   alert: 'bg-white text-error border border-error hover:bg-error-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-error/60',
 };
 
@@ -53,6 +62,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   intent = 'primary',
   size = 'md',
+  neutral = false,
   icon,
   iconPosition = 'left',
   href,
@@ -71,7 +81,7 @@ export const Button: React.FC<ButtonProps> = ({
       name={icon} 
       size={iconSizes[size]} 
       className="flex-shrink-0"
-      color={intent === 'primary' ? 'white' : 'currentColor'}
+      color={(intent === 'primary' && !neutral) || (neutral && intent === 'primary') ? 'white' : 'currentColor'}
     />
   );
 
@@ -97,7 +107,7 @@ export const Button: React.FC<ButtonProps> = ({
         paddingSizes[size],
         icon ? gapSizes[size] : '',
         'justify-center',
-        intent !== 'inline' ? intentStyles[intent] : intentStyles.inline,
+        neutral ? neutralStyles[intent] : intentStyles[intent],
         className
       )}
       {...props}

@@ -9,6 +9,7 @@ export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDivElement>, '
   size?: 'sm' | 'md' | 'lg' | 'xl';
   closeOnOverlayClick?: boolean;
   showCloseButton?: boolean;
+  blur?: number;
 }
 
 const sizeClasses = {
@@ -25,6 +26,7 @@ export const Modal: React.FC<ModalProps> = ({
   size = 'md',
   closeOnOverlayClick = true,
   showCloseButton = true,
+  blur = 0,
   children,
   className,
   ...props 
@@ -46,7 +48,11 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div 
-        className="fixed inset-0 bg-black/50 transition-opacity"
+        className={cn(
+          "fixed inset-0 transition-opacity",
+          blur > 0 ? "bg-black/20" : "bg-black/50"
+        )}
+        style={blur > 0 ? { backdropFilter: `blur(${blur}px)`, WebkitBackdropFilter: `blur(${blur}px)` } : undefined}
         onClick={closeOnOverlayClick ? onClose : undefined}
       />
       

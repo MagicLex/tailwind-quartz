@@ -71,7 +71,7 @@ export const Button: React.FC<ButtonProps> = ({
       name={icon} 
       size={iconSizes[size]} 
       className="flex-shrink-0"
-      color={intent === 'primary' ? 'white' : undefined}
+      color={intent === 'primary' ? 'white' : 'currentColor'}
     />
   );
 

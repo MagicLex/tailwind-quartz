@@ -10,6 +10,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode;
   intent?: Intent;
   icon?: IconName;
+  iconPosition?: 'left' | 'right';
   href?: string;
   external?: boolean;
   isLoading?: boolean;
@@ -26,12 +27,13 @@ const intentStyles: Record<Intent, string> = {
   alert: 'bg-white text-error border border-gray-light hover:bg-error-lightest disabled:bg-gray-lightest disabled:text-black disabled:border-gray-light focus:outline-none focus:ring-2 focus:ring-error/60',
 };
 
-const baseStyles = 'inline-flex items-center justify-center px-4 py-2 rounded-sm font-bold text-sm transition-all duration-200 cursor-pointer disabled:cursor-default';
+const baseStyles = 'inline-flex items-center px-4 py-2 rounded-sm font-bold text-sm transition-all duration-200 cursor-pointer disabled:cursor-default';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   intent = 'primary',
   icon,
+  iconPosition = 'left',
   href,
   external = false,
   isLoading = false,
@@ -43,26 +45,31 @@ export const Button: React.FC<ButtonProps> = ({
   as: Component,
   ...props
 }) => {
+  const iconElement = icon && (!loadingOnly || !isLoading) && (
+    <Icon 
+      name={icon} 
+      size="md" 
+      className="flex-shrink-0"
+      color={intent === 'primary' ? 'white' : undefined}
+    />
+  );
+
   const buttonContent = (
     <button
       type={type}
       disabled={disabled || isLoading}
-      className={cn(baseStyles, intentStyles[intent], className)}
+      className={cn(baseStyles, !icon ? 'justify-center' : '', intentStyles[intent], className)}
       {...props}
     >
-      {icon && (!loadingOnly || !isLoading) && (
-        <Icon 
-          name={icon} 
-          size="md" 
-          className="mr-2"
-          color={intent === 'primary' ? 'white' : undefined}
-        />
-      )}
+      {iconPosition === 'left' && iconElement}
+      {iconPosition === 'left' && icon && <span className="w-2" />}
       {(!loadingOnly || !isLoading) && children}
+      {iconPosition === 'right' && icon && <span className="w-2" />}
+      {iconPosition === 'right' && iconElement}
       {isLoading && (
         <Spinner 
           size={16} 
-          className={loadingOnly ? '' : 'ml-2'}
+          className={`flex-shrink-0 ${!loadingOnly ? 'ml-2' : ''}`}
           color={intent === 'primary' ? 'white' : 'currentColor'}
         />
       )}

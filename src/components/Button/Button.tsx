@@ -30,9 +30,9 @@ const intentStyles: Record<Intent, string> = {
 };
 
 const sizeStyles: Record<Size, string> = {
-  sm: 'px-3 py-1.5 text-xs',
-  md: 'px-4 py-2 text-sm',
-  lg: 'px-6 py-3 text-base',
+  sm: 'py-1.5 text-xs',
+  md: 'py-2 text-sm',
+  lg: 'py-3 text-base',
 };
 
 const iconSizes: Record<Size, 'sm' | 'md' | 'lg'> = {
@@ -47,7 +47,7 @@ const spinnerSizes: Record<Size, number> = {
   lg: 20,
 };
 
-const baseStyles = 'relative inline-flex items-center rounded-sm font-bold transition-all duration-200 cursor-pointer disabled:cursor-default';
+const baseStyles = 'inline-flex items-center rounded-sm font-bold transition-all duration-200 cursor-pointer disabled:cursor-default';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
@@ -66,23 +66,26 @@ export const Button: React.FC<ButtonProps> = ({
   as: Component,
   ...props
 }) => {
-  const paddingWithIcon = {
-    sm: iconPosition === 'left' ? 'pl-8' : 'pr-8',
-    md: iconPosition === 'left' ? 'pl-10' : 'pr-10',
-    lg: iconPosition === 'left' ? 'pl-12' : 'pr-12',
-  };
-
   const iconElement = icon && (!loadingOnly || !isLoading) && (
     <Icon 
       name={icon} 
       size={iconSizes[size]} 
-      className={cn(
-        "absolute top-1/2 -translate-y-1/2",
-        iconPosition === 'left' ? 'left-3' : 'right-3'
-      )}
+      className="flex-shrink-0"
       color={intent === 'primary' ? 'white' : 'currentColor'}
     />
   );
+
+  const paddingSizes = {
+    sm: 'px-3',
+    md: 'px-4', 
+    lg: 'px-6',
+  };
+
+  const gapSizes = {
+    sm: 'gap-3',
+    md: 'gap-4',
+    lg: 'gap-6',
+  };
 
   const buttonContent = (
     <button
@@ -91,22 +94,24 @@ export const Button: React.FC<ButtonProps> = ({
       className={cn(
         baseStyles, 
         sizeStyles[size],
-        icon ? paddingWithIcon[size] : '',
+        paddingSizes[size],
+        icon ? gapSizes[size] : '',
         'justify-center',
         intent !== 'inline' ? intentStyles[intent] : intentStyles.inline,
         className
       )}
       {...props}
     >
-      {iconElement}
-      {(!loadingOnly || !isLoading) && children}
+      {iconPosition === 'left' && iconElement}
+      <span className={cn(
+        "flex-1",
+        icon ? (iconPosition === 'left' ? 'text-left' : 'text-right') : 'text-center'
+      )}>{(!loadingOnly || !isLoading) && children}</span>
+      {iconPosition === 'right' && iconElement}
       {isLoading && (
         <Spinner 
           size={spinnerSizes[size]} 
-          className={cn(
-            loadingOnly ? 'relative' : 'ml-2',
-            !loadingOnly && 'relative'
-          )}
+          className="flex-shrink-0"
           color={intent === 'primary' ? 'white' : 'currentColor'}
         />
       )}

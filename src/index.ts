@@ -64,6 +64,12 @@ export type { ModalProps } from './components/Modal';
 export { Badge } from './components/Badge';
 export type { BadgeProps, BadgeVariant } from './components/Badge';
 
+export { IconLabel } from './components/IconLabel';
+export type { IconLabelProps } from './components/IconLabel';
+
+export { StatusMessage } from './components/StatusMessage';
+export type { StatusMessageProps, StatusVariant } from './components/StatusMessage';
+
 export { Tooltip } from './components/Tooltip';
 export type { TooltipProps } from './components/Tooltip';
 

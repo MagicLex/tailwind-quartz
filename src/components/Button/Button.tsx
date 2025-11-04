@@ -114,8 +114,8 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {iconPosition === 'left' && iconElement}
       <span className={cn(
-        "flex-1",
-        icon ? (iconPosition === 'left' ? 'text-left' : 'text-right') : 'text-center'
+        "flex-1 inline-flex items-center gap-2",
+        icon ? (iconPosition === 'left' ? 'justify-start' : 'justify-end') : 'justify-center'
       )}>{(!loadingOnly || !isLoading) && children}</span>
       {iconPosition === 'right' && iconElement}
       {isLoading && (

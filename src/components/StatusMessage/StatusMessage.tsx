@@ -33,7 +33,7 @@ export const StatusMessage: React.FC<StatusMessageProps> = ({
   return (
     <div
       className={cn(
-        'flex items-start gap-3 p-3 rounded border',
+        'flex items-center gap-3 p-3 rounded-[1px] border',
         variantStyles[variant],
         className
       )}
